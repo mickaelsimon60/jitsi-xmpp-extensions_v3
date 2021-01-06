@@ -22,93 +22,82 @@ import org.jxmpp.jid.impl.*;
 import org.xmlpull.v1.*;
 
 /**
- * The parser of {@link MuteIq}.
+ * The parser of {@link VeazzyBlindIq}.
  *
  * @author Pawel Domas
  */
-public class MuteIqProvider
-    extends IQProvider<MuteIq>
-{
+public class VeazzyBlindIqProvider
+        extends IQProvider<VeazzyBlindIq> {
+
     /**
      * Registers this IQ provider into given <tt>ProviderManager</tt>.
      */
-    public static void registerMuteIqProvider()
-    {
-        ProviderManager.addIQProvider(
-            MuteIq.ELEMENT_NAME,
-            MuteIq.NAMESPACE,
-            new MuteIqProvider());
+    public static void registerVeazzyBlindIqProvider() {
+        ProviderManager.addIQProvider(VeazzyBlindIq.ELEMENT_NAME,
+                VeazzyBlindIq.NAMESPACE,
+                new VeazzyBlindIqProvider());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public MuteIq parse(XmlPullParser parser, int initialDepth)
-        throws Exception
-    {
+    public VeazzyBlindIq parse(XmlPullParser parser, int initialDepth)
+            throws Exception {
         String namespace = parser.getNamespace();
 
         // Check the namespace
-        if (!MuteIq.NAMESPACE.equals(namespace))
-        {
+        if (!VeazzyBlindIq.NAMESPACE.equals(namespace)) {
             return null;
         }
 
         String rootElement = parser.getName();
 
-        MuteIq iq;
+        VeazzyBlindIq iq;
 
-        if (MuteIq.ELEMENT_NAME.equals(rootElement))
-        {
-            iq = new MuteIq();
-            String jidStr = parser.getAttributeValue("", MuteIq.JID_ATTR_NAME);
-            if (jidStr != null)
-            {
+        if (VeazzyBlindIq.ELEMENT_NAME.equals(rootElement)) {
+            iq = new VeazzyBlindIq();
+            String jidStr = parser.getAttributeValue("", VeazzyBlindIq.JID_ATTR_NAME);
+            if (jidStr != null) {
                 Jid jid = JidCreate.from(jidStr);
                 iq.setJid(jid);
             }
 
             String actorStr
-                = parser.getAttributeValue("", MuteIq.ACTOR_ATTR_NAME);
-            if (actorStr != null)
-            {
+                    = parser.getAttributeValue("", VeazzyBlindIq.ACTOR_ATTR_NAME);
+            if (actorStr != null) {
                 Jid actor = JidCreate.from(actorStr);
                 iq.setActor(actor);
             }
 
-            String blockAudioControlStr
-                    = parser.getAttributeValue("", MuteIq.BLOCK_AUDIO_CONTROL_ATTR_NAME);
-            if (blockAudioControlStr != null) {
-                iq.setBlockAudioControl(Boolean.valueOf(blockAudioControlStr));
+            String blockVideoControlStr
+                    = parser.getAttributeValue("", VeazzyBlindIq.BLOCK_VIDEO_CONTROL_ATTR_NAME);
+            if (blockVideoControlStr != null) {
+                iq.setBlockVideoControl(Boolean.valueOf(blockVideoControlStr));
             }
-        }
-        else
-        {
+
+        } else {
             return null;
         }
 
         boolean done = false;
 
-        while (!done)
-        {
-            switch (parser.next())
-            {
-                case XmlPullParser.END_TAG:
-                {
+        while (!done) {
+            switch (parser.next()) {
+                case XmlPullParser.END_TAG: {
                     String name = parser.getName();
 
-                    if (rootElement.equals(name))
-                    {
+                    if (rootElement.equals(name)) {
                         done = true;
                     }
                     break;
                 }
 
-                case XmlPullParser.TEXT:
-                {
-                    Boolean mute = Boolean.parseBoolean(parser.getText());
-                    iq.setMute(mute);
+                case XmlPullParser.TEXT: {
+                    if (parser.getText() != null && parser.getText().length() > 0) {
+                        Boolean doBlind = Boolean.parseBoolean(parser.getText());
+                        iq.setDoBlind(doBlind);
+                    }
                     break;
                 }
             }

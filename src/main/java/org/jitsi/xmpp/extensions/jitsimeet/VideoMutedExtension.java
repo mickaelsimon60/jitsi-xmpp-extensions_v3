@@ -66,4 +66,5 @@ public class VideoMutedExtension
             videoMuted == null
                 ? "false" : videoMuted.toString());
     }
+
 }

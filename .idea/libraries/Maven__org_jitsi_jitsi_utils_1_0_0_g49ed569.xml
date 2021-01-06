@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jitsi:jitsi-utils:1.0-0-g49ed569">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jitsi/jitsi-utils/1.0-0-g49ed569/jitsi-utils-1.0-0-g49ed569.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jitsi/jitsi-utils/1.0-0-g49ed569/jitsi-utils-1.0-0-g49ed569-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jitsi/jitsi-utils/1.0-0-g49ed569/jitsi-utils-1.0-0-g49ed569-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

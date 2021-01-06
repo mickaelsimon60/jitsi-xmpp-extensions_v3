@@ -6,7 +6,7 @@
 
   <groupId>org.jitsi</groupId>
   <artifactId>jitsi-xmpp-extensions</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-CUSTOM-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,7 +14,7 @@
   </properties>
 
   <name>jitsi-xmpp-extensions</name>
-  <url>https://github.com/jitsi/jitsi-xmpp-extensions</url>
+  <!--<url>https://github.com/jitsi/jitsi-xmpp-extensions</url>-->
 
   <dependencies>
     <dependency>
@@ -35,7 +35,7 @@
       <version>${smack.version}</version>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.jitsi</groupId>
       <artifactId>jitsi-utils</artifactId>
       <version>1.0-0-g49ed569</version>
     </dependency>

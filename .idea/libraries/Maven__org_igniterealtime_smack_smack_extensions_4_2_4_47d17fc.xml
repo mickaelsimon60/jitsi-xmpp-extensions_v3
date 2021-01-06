@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.igniterealtime.smack:smack-extensions:4.2.4-47d17fc">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/igniterealtime/smack/smack-extensions/4.2.4-47d17fc/smack-extensions-4.2.4-47d17fc.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/igniterealtime/smack/smack-extensions/4.2.4-47d17fc/smack-extensions-4.2.4-47d17fc-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/igniterealtime/smack/smack-extensions/4.2.4-47d17fc/smack-extensions-4.2.4-47d17fc-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

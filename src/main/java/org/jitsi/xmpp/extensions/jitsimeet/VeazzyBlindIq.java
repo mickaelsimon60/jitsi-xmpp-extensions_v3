@@ -24,18 +24,18 @@ import org.jxmpp.jid.*;
  *
  * @author Pawel Domas
  */
-public class MuteIq
-    extends IQ
-{
-    /**
-     * Name space of mute packet extension.
-     */
-    public static final String NAMESPACE = "http://jitsi.org/jitmeet/audio";
+public class VeazzyBlindIq
+        extends IQ {
 
     /**
-     * XML element name of mute packet extension.
+     * Name space of blind packet extension.
      */
-    public static final String ELEMENT_NAME = "mute";
+    public static final String NAMESPACE = "http://jitsi.org/jitmeet/video";
+
+    /**
+     * XML element name of blind packet extension.
+     */
+    public static final String ELEMENT_NAME = "blind";
 
     /**
      * Attribute name of "jid".
@@ -50,66 +50,62 @@ public class MuteIq
     /**
      * Attribute name of "block".
      */
-    public static final String BLOCK_AUDIO_CONTROL_ATTR_NAME = "blockaudiocontrol";
+    public static final String BLOCK_VIDEO_CONTROL_ATTR_NAME = "blockvideocontrol";
 
     /**
-     * Muted peer MUC jid.
+     * Blinded peer MUC jid.
      */
     private Jid jid;
 
     /**
-     * The jid of the peer tha initiated the mute, optional.
+     * The jid of the peer that initiated the blind, optional.
      */
     private Jid actor;
 
     /**
-     * To mute or unmute.
+     * To blind or unblind.
      */
-    private Boolean mute;
+    private Boolean doBlind;
 
     /**
-     * To block microphone or display microphone.
+     * To block webcam or display webcam.
      */
-    private Boolean blockAudioControl;
+    private Boolean blockVideoControl;
 
     /**
      * Creates a new instance of this class.
      */
-    public MuteIq()
-    {
+    public VeazzyBlindIq() {
         super(ELEMENT_NAME, NAMESPACE);
     }
 
     @Override
     protected IQChildElementXmlStringBuilder getIQChildElementBuilder(
-            IQChildElementXmlStringBuilder xml)
-    {
-        if (jid != null)
-        {
+            IQChildElementXmlStringBuilder xml) {
+        if (jid != null) {
             xml.attribute(JID_ATTR_NAME, jid);
         }
 
-        if (actor != null)
-        {
+        if (actor != null) {
             xml.attribute(ACTOR_ATTR_NAME, actor);
         }
 
-        if (blockAudioControl != null) {
-            xml.attribute(BLOCK_AUDIO_CONTROL_ATTR_NAME, blockAudioControl);
+        if (blockVideoControl != null) {
+            xml.attribute(BLOCK_VIDEO_CONTROL_ATTR_NAME, blockVideoControl);
         }
 
         xml.rightAngleBracket()
-                .append(mute.toString());
+                .append(doBlind.toString());
 
         return xml;
     }
 
     /**
-     * Sets the MUC jid of the user to be muted/unmuted.
+     * Sets the MUC jid of the user to be blinded/unblinded.
+     *
      * @param jid muc jid in the form of room_name@muc.server.net/nickname.
      */
-    public void setJid(Jid jid)
-    {
+    public void setJid(Jid jid) {
         this.jid = jid;
     }
 
@@ -117,64 +113,63 @@ public class MuteIq
      * Returns MUC jid of the participant in the form of
      * "room_name@muc.server.net/nickname".
      */
-    public Jid getJid()
-    {
+    public Jid getJid() {
         return jid;
     }
 
     /**
-     * The action contained in the text part of 'mute' XML element body.
-     * @param mute <tt>true</tt> to mute the participant. <tt>null</tt> means no
-     *             action is included in result XML.
+     * The action contained in the text part of 'blind' XML element body.
+     *
+     * @param doBlind <tt>true</tt> to blind the participant. <tt>null</tt> means no
+     * action is included in result XML.
      */
-    public void setMute(Boolean mute)
-    {
-        this.mute = mute;
+    public void setDoBlind(Boolean doBlind) {
+        this.doBlind = doBlind;
     }
 
     /**
-     * Returns <tt>true</tt> to mute the participant, <tt>false</tt> to unmute
+     * Returns <tt>true</tt> to blind the participant, <tt>false</tt> to unblind
      * or <tt>null</tt> if the action has not been specified(which is invalid).
      */
-    public Boolean getMute()
-    {
-        return mute;
+    public Boolean getDoBlind() {
+        return doBlind;
     }
 
     /**
-     * Returns the peer jid that initiated the mute, if any.
-     * @return the peer jid that initiated the mute.
+     * Returns the peer jid that initiated the blind, if any.
+     *
+     * @return the peer jid that initiated the blind.
      */
-    public Jid getActor()
-    {
+    public Jid getActor() {
         return actor;
     }
 
     /**
-     * Sets jid for the peer that initiated the mute.
-     * @param actor the jid of the peer doing the mute.
+     * Sets jid for the peer that initiated the blind.
+     *
+     * @param actor the jid of the peer doing the blind.
      */
-    public void setActor(Jid actor)
-    {
+    public void setActor(Jid actor) {
         this.actor = actor;
     }
 
     /**
-     * The action contained in the text part of 'mute' XML element body.
+     * The action contained in the text part of 'blind' XML element body.
      *
-     * @param blockAudioControl <tt>true</tt> to block the microphone of the participant.
+     * @param blockVideoControl <tt>true</tt> to block the webcam of the participant.
      * <tt>null</tt> means no action is included in result XML.
      */
-    public void setBlockAudioControl(Boolean blockAudioControl) {
-        this.blockAudioControl = blockAudioControl;
+    public void setBlockVideoControl(Boolean blockVideoControl) {
+        this.blockVideoControl = blockVideoControl;
     }
 
     /**
-     * Returns <tt>true</tt> to block the microphone of the participant,
-     * <tt>false</tt> to show the microphone button or <tt>null</tt> if the
+     * Returns <tt>true</tt> to block the webcam of the participant,
+     * <tt>false</tt> to show the webcam button or <tt>null</tt> if the
      * action has not been specified(which is invalid).
      */
-    public Boolean getBlockAudioControl() {
-        return blockAudioControl;
+    public Boolean getBlockVideoControl() {
+        return blockVideoControl;
     }
+
 }
